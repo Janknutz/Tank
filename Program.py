@@ -1,6 +1,5 @@
 from superwires import games, color
 import random, os.path
-os.chdir('C:\\Users\walkerj\\Documents\\Python\\Tank')
 
 games.init(screen_width = 1256, screen_height = 690, fps = 50)
 
@@ -248,3 +247,4 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
