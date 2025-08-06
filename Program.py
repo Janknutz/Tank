@@ -1,6 +1,8 @@
 from superwires import games, color
 import random, os, subprocess,pygame
-#GO
+
+app.run(host="0.0.0.0", port=10000)
+
 # Get the root of the current Git repository
 repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
 
@@ -253,6 +255,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
