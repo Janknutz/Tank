@@ -7,13 +7,6 @@ repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).dec
 # Set XDG_RUNTIME_DIR to the GitHub repository root
 os.environ["XDG_RUNTIME_DIR"] = repo_root
 
-try:
-    pygame.mixer.init()
-    audio_available = True
-except pygame.error as e:
-    print(f"Audio not available: {e}")
-    audio_available = False
-
 games.init(screen_width = 1256, screen_height = 690, fps = 50)
 
 
@@ -24,7 +17,7 @@ class PlayerTank(games.Sprite):
     power = 3
     timer = 0
     pow_time = 0
-    lev_sound = games.load_sound("level.wav")
+    #lev_sound = games.load_sound("level.wav")
     image = games.load_image("left_tank.bmp")
 
     power_display = games.Text(value = "Power: " + str(power),
@@ -106,8 +99,7 @@ class PlayerTank(games.Sprite):
             PlayerTank.level += 1
             self.level_display.value += 1
             self.level_display.right = games.screen.width - 50
-            if audio_available:
-                PlayerTank.lev_sound.play()
+            #PlayerTank.lev_sound.play()
             for i in range(PlayerTank.level):
                 enemy = EnemyTank(x = random.randrange(games.screen.width - 350, games.screen.width - 50),
                                   y = random.randrange(games.screen.height - 100, games.screen.height - 25), side = 'bad')
@@ -195,7 +187,7 @@ class EnemyTank(games.Sprite):
 
 class Explosion(games.Animation):
     """Explosion animation"""
-    sound = games.load_sound("explosion.wav")
+    #sound = games.load_sound("explosion.wav")
     images = []
     for i in os.listdir(os.getcwd()):
         if "explosion" in i and ".bmp" in i:
@@ -205,19 +197,17 @@ class Explosion(games.Animation):
                                         x = x, y = y,
                                         repeat_interval = 4,
                                         n_repeats = 1, is_collideable = False)
-        if audio_available:
-            Explosion.sound.play()
+        #Explosion.sound.play()
 
 
 class Bullet(games.Sprite):
     image = games.load_image("missile.bmp")
-    sound = games.load_sound("missile.wav")
+    #sound = games.load_sound("missile.wav")
     time = 0.0
 
     def __init__(self, x, y, dx, side):
         super(Bullet, self).__init__(image = Bullet.image, x = x, y = y, dx = dx)
-        if audio_available:
-            Bullet.sound.play()
+        #Bullet.sound.play()
 
         self.side = side
 
@@ -263,6 +253,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
