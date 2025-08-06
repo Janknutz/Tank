@@ -1,15 +1,14 @@
 from superwires import games, color
 from flask import Flask
-import random, os, subprocess,pygame
+import random, os, subprocess, pygame
 app = Flask(__name__) 
 app.run(host="0.0.0.0", port=10000)
 @app.route('/')
-# Get the root of the current Git repository
-repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
 
-# Set XDG_RUNTIME_DIR to the GitHub repository root
+repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
 os.environ["XDG_RUNTIME_DIR"] = repo_root
 os.environ["SDL_AUDIODRIVER"] = "dummy"
+
 games.init(screen_width = 1256, screen_height = 690, fps = 50)
 
 
@@ -256,6 +255,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
