@@ -1,7 +1,6 @@
 from superwires import games, color
 from flask import Flask
 import random, os, subprocess, pygame
-@app.route('/')
 
 app = Flask(__name__) 
 app.run(host="0.0.0.0", port=10000)
@@ -256,6 +255,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
