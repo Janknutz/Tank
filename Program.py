@@ -1,7 +1,7 @@
 from superwires import games, color
 import random, os
 
-os.environ["XDG_RUNTIME_DIR"] = "/"
+os.environ["XDG_RUNTIME_DIR"] = "./"
 
 games.init(screen_width = 1256, screen_height = 690, fps = 50)
 
