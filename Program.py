@@ -1,5 +1,5 @@
 from superwires import games, color
-import random, os, subprocess
+import random, os, subprocess,pygame
 
 # Get the root of the current Git repository
 repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
@@ -7,9 +7,12 @@ repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).dec
 # Set XDG_RUNTIME_DIR to the GitHub repository root
 os.environ["XDG_RUNTIME_DIR"] = repo_root
 
-#print("XDG_RUNTIME_DIR set to:", os.environ["XDG_RUNTIME_DIR"])
-
-#os.environ["XDG_RUNTIME_DIR"] = "./"
+try:
+    pygame.mixer.init()
+    audio_available = True
+except pygame.error as e:
+    print(f"Audio not available: {e}")
+    audio_available = False
 
 games.init(screen_width = 1256, screen_height = 690, fps = 50)
 
@@ -103,7 +106,8 @@ class PlayerTank(games.Sprite):
             PlayerTank.level += 1
             self.level_display.value += 1
             self.level_display.right = games.screen.width - 50
-            PlayerTank.lev_sound.play()
+            if audio_available:
+                PlayerTank.lev_sound.play()
             for i in range(PlayerTank.level):
                 enemy = EnemyTank(x = random.randrange(games.screen.width - 350, games.screen.width - 50),
                                   y = random.randrange(games.screen.height - 100, games.screen.height - 25), side = 'bad')
@@ -201,7 +205,8 @@ class Explosion(games.Animation):
                                         x = x, y = y,
                                         repeat_interval = 4,
                                         n_repeats = 1, is_collideable = False)
-        Explosion.sound.play()
+        if audio_available:
+            Explosion.sound.play()
 
 
 class Bullet(games.Sprite):
@@ -211,7 +216,8 @@ class Bullet(games.Sprite):
 
     def __init__(self, x, y, dx, side):
         super(Bullet, self).__init__(image = Bullet.image, x = x, y = y, dx = dx)
-        Bullet.sound.play()
+        if audio_available:
+            Bullet.sound.play()
 
         self.side = side
 
@@ -257,6 +263,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
