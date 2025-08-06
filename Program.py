@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.run(host="0.0.0.0", port=10000)
 @app.route('/')
 
-#repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
+
 repo_root = os.path.dirname(os.path.abspath(__file__))
 os.environ["XDG_RUNTIME_DIR"] = repo_root
 os.environ["SDL_AUDIODRIVER"] = "dummy"
@@ -256,6 +256,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
