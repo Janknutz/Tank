@@ -1,6 +1,6 @@
 from superwires import games, color
 import random, os, subprocess,pygame
-
+app = Flask(__name__) 
 app.run(host="0.0.0.0", port=10000)
 
 # Get the root of the current Git repository
@@ -255,6 +255,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
