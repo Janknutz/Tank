@@ -1,7 +1,15 @@
 from superwires import games, color
-import random, os
+import random, os, subprocess
 
-os.environ["XDG_RUNTIME_DIR"] = "./"
+# Get the root of the current Git repository
+repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode().strip()
+
+# Set XDG_RUNTIME_DIR to the GitHub repository root
+os.environ["XDG_RUNTIME_DIR"] = repo_root
+
+#print("XDG_RUNTIME_DIR set to:", os.environ["XDG_RUNTIME_DIR"])
+
+#os.environ["XDG_RUNTIME_DIR"] = "./"
 
 games.init(screen_width = 1256, screen_height = 690, fps = 50)
 
@@ -249,6 +257,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
