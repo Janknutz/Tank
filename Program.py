@@ -228,7 +228,8 @@ class Bullet(games.Sprite):
         PlayerTank.score.left = 105
         new_explosion = Explosion(self.x, self.y)
         games.screen.add(new_explosion)
-
+        
+@app.route("/")  
 class instructions(games.Sprite):
     image = games.load_image("instructions.bmp", transparent = False)
     def __init__(self, x = games.screen.width/2, y = games.screen.height/2):
@@ -255,6 +256,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
