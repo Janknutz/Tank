@@ -6,7 +6,7 @@ repo_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).dec
 
 # Set XDG_RUNTIME_DIR to the GitHub repository root
 os.environ["XDG_RUNTIME_DIR"] = repo_root
-
+os.environ["SDL_AUDIODRIVER"] = "dummy"
 games.init(screen_width = 1256, screen_height = 690, fps = 50)
 
 
@@ -253,6 +253,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
