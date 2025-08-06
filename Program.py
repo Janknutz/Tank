@@ -239,8 +239,8 @@ class instructions(games.Sprite):
         
 def main():
     
-    games.music.load("themey.mp3")
-    games.music.play(-1)
+    #games.music.load("themey.mp3")
+    #games.music.play(-1)
     background_image = games.load_image("barbedbg.jpg", transparent = False)
     games.screen.background = background_image
     player = PlayerTank()
@@ -253,6 +253,7 @@ def main():
 instructions = instructions()
 games.screen.add(instructions)
 games.screen.mainloop()
+
 
 
 
